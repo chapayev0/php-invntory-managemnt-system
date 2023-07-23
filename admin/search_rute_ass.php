@@ -49,8 +49,8 @@ $sql_count="SELECT *
 FROM  tbl_assgn_rute  WHERE r_a_status ='0' $data ORDER BY r_a_id";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_customer in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_customer in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -90,7 +90,7 @@ $last = '&nbsp;'; // nor the last page link
 
 $query_p="SELECT *
 FROM  tbl_assgn_rute  WHERE r_a_status ='0' $data ORDER BY r_a_id LIMIT $offset, $rowsPerPage";
-$result_p=mysql_query($query_p) or die("Unable to select data from the tbl_user. ".mysql_error());
+$result_p=mysqli_query($connection,$query_p) or die("Unable to select data from the tbl_user. ".mysqli_error());
 if(mysql_num_rows($result_p) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -106,7 +106,7 @@ if(mysql_num_rows($result_p) != 0){
 	<td width="79" align="center" class="tbl_header_right">Edit</td>
 	<td width="83" align="center" class="tbl_header">Delete</td>
 	</tr>
-	<?php while($row_p=mysql_fetch_assoc($result_p)){?>
+	<?php while($row_p=mysqli_fetch_assoc($result_p)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#EDFBD9';" onmouseout="this.style.backgroundColor='';">
     <td width="65" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_p["r_a_id"]; ?></td>
 	<td width="110" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_p["rute"]; ?></td>

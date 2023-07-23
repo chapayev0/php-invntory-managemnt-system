@@ -20,61 +20,61 @@ $data="";
 
 
 	$query_book1="SELECT SUM(pay) FROM   step_bill WHERE status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book1=mysql_query($query_book1) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp1=mysql_fetch_assoc($result_book1);
+ 	$result_book1=mysqli_query($connection,$query_book1) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp1=mysqli_fetch_assoc($result_book1);
     $tot1 = $row_recp1["SUM(pay)"];
 
 
 	$query_book="SELECT SUM(ini) FROM  tbl_bill WHERE bill_status='0' AND bill_date='".$_REQUEST['date']."'";
- 	$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_donation. ".mysql_error());
-    $row_recp=mysql_fetch_assoc($result_book);
+ 	$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+    $row_recp=mysqli_fetch_assoc($result_book);
    	$tot = $row_recp["SUM(ini)"];
     
 	/*$query_book3="SELECT SUM(amount) FROM  tbl_loans WHERE l_status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book3=mysql_query($query_book3) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp3=mysql_fetch_assoc($result_book3);
+ 	$result_book3=mysqli_query($connection,$query_book3) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp3=mysqli_fetch_assoc($result_book3);
     $tot3 = $row_recp3["SUM(amount)"];
 	*/
 	$query_book2="SELECT SUM(amount) FROM  tbl_salary WHERE status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book2=mysql_query($query_book2) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp2=mysql_fetch_assoc($result_book2);
+ 	$result_book2=mysqli_query($connection,$query_book2) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp2=mysqli_fetch_assoc($result_book2);
     $tot2 = $row_recp2["SUM(amount)"];
 	
 	$query_book4="SELECT SUM(paid_amt) FROM  tbl_grn WHERE grn_status='0' AND grn_date='".$_REQUEST['date']."'";
- 	$result_book4=mysql_query($query_book4) or die("Unable to select data from the bl_grn. ".mysql_error());
-	$row_recp4=mysql_fetch_assoc($result_book4);
+ 	$result_book4=mysqli_query($connection,$query_book4) or die("Unable to select data from the bl_grn. ".mysqli_error());
+	$row_recp4=mysqli_fetch_assoc($result_book4);
     $tot4 = $row_recp4["SUM(paid_amt)"];
 	
 	$query_deposite="SELECT SUM(amt) FROM  tbl_trans WHERE status='0' AND type='deposite' AND  date='".$_REQUEST['date']."'";
- 	$result_deposite=mysql_query($query_deposite) or die("Unable to select data from the bl_grn. ".mysql_error());
-	$row_deposite=mysql_fetch_assoc($result_deposite);
+ 	$result_deposite=mysqli_query($connection,$query_deposite) or die("Unable to select data from the bl_grn. ".mysqli_error());
+	$row_deposite=mysqli_fetch_assoc($result_deposite);
     $deposite = $row_deposite["SUM(amt)"];
 	
 	$query_w="SELECT SUM(amt) FROM  tbl_trans WHERE status='0' AND type='withdraw' AND date='".$_REQUEST['date']."'";
- 	$result_w=mysql_query($query_w) or die("Unable to select data from the bl_grn. ".mysql_error());
-	$row_w=mysql_fetch_assoc($result_w);
+ 	$result_w=mysqli_query($connection,$query_w) or die("Unable to select data from the bl_grn. ".mysqli_error());
+	$row_w=mysqli_fetch_assoc($result_w);
     $w = $row_w["SUM(amt)"];
 	
 	
 	/*
 	$query_book5="SELECT SUM(amount_temple) FROM   tbl_collecting WHERE status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book5=mysql_query($query_book5) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp5=mysql_fetch_assoc($result_book5);
+ 	$result_book5=mysqli_query($connection,$query_book5) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp5=mysqli_fetch_assoc($result_book5);
     $tot5 = $row_recp5["SUM(amount_temple)"];
 	
 	$query_book7="SELECT SUM(amount_chanter) FROM   tbl_collecting WHERE status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book7=mysql_query($query_book7) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp7=mysql_fetch_assoc($result_book7);
+ 	$result_book7=mysqli_query($connection,$query_book7) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp7=mysqli_fetch_assoc($result_book7);
     $tot7 = $row_recp7["SUM(amount_chanter)"];
 	
 	$query_book6="SELECT SUM(bill_amount) FROM  tbl_bills WHERE bill_status='0' AND bill_paid_date='".$_REQUEST['date']."'";
- 	$result_book6=mysql_query($query_book6) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp6=mysql_fetch_assoc($result_book6);
+ 	$result_book6=mysqli_query($connection,$query_book6) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp6=mysqli_fetch_assoc($result_book6);
     $tot6 = $row_recp6["SUM(bill_amount)"];
 	
 	$query_book8="SELECT SUM(amount) FROM  tbl_other WHERE o_status='0' AND date='".$_REQUEST['date']."'";
- 	$result_book8=mysql_query($query_book8) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_recp8=mysql_fetch_assoc($result_book8);
+ 	$result_book8=mysqli_query($connection,$query_book8) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_recp8=mysqli_fetch_assoc($result_book8);
     $tot8 = $row_recp8["SUM(amount)"];
  */
 
@@ -82,7 +82,7 @@ $data="";
 	// $tot3+$tot4+$tot2+$tot6;
 	
 $query_book="SELECT * FROM tbl_donation WHERE d_status='0' $data ORDER BY donation_id ";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_donation. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_donation. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">

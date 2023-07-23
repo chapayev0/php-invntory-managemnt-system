@@ -29,8 +29,8 @@ $daily_amount=0;
 
 $sql_count="SELECT * FROM tbl_salary WHERE status='0' $data ORDER BY s_name";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_salary in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_salary in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -69,7 +69,7 @@ if ($pageNum < $maxPage){
 }
 
  $query_book="SELECT * FROM tbl_salary WHERE status='0' $data ORDER BY s_id LIMIT $offset, $rowsPerPage";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_salary. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_salary. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -85,7 +85,7 @@ if(mysql_num_rows($result_book) != 0){
     <td width="85" align="center" class="tbl_header_right">Date</td>
     
   </tr>
-  <?php while($row_recp=mysql_fetch_assoc($result_book)){
+  <?php while($row_recp=mysqli_fetch_assoc($result_book)){
   
   $tot = $row_recp["amount"];
    $daily_amount+=$tot;

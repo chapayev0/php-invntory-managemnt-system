@@ -11,7 +11,7 @@ $discount=isset($_POST['discount'])?$_POST['discount']:0;
 		
 $query_insert="INSERT INTO step_bill(bill_id,name,nic,address,l_date,date,status,u_id,pay) 
 VALUES('".$_POST['bill_no']."','".$_POST['name']."','".$_POST['nic']."','".$_POST['address']."','".$_POST['l_date']."','".$_POST['t_date']."','0','$user_id','".$_POST['payment']."')";
-mysql_query($query_insert) or die("unable to insert data in to the tbl_bill".mysql_error());
+mysqli_query($connection,$query_insert) or die("unable to insert data in to the tbl_bill".mysqli_error());
 
 	
 

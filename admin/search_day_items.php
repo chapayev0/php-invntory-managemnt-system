@@ -45,8 +45,8 @@ LEFT JOIN tbl_product ON tbl_bill_menu.menu_name = tbl_product.p_code
 WHERE tbl_bill_menu.menu_status = '0'  $data
 ORDER BY tbl_bill_menu.bill_menu_id";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_stock in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_stock in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -92,8 +92,8 @@ if ($pageNum < $maxPage){
 $query_bill_menu="SELECT SUM(tbl_bill_menu.menu_price*tbl_bill_menu.bill_menu_qty-tbl_product.cprice*tbl_bill_menu.bill_menu_qty) FROM tbl_bill_menu
 LEFT JOIN tbl_product ON tbl_bill_menu.menu_name = tbl_product.p_code
 WHERE tbl_bill_menu.menu_status = '0' $data";
-$result_bill_menu=mysql_query($query_bill_menu) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_bill_menu=mysql_fetch_row($result_bill_menu);
+$result_bill_menu=mysqli_query($connection,$query_bill_menu) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_bill_menu=mysqli_fetch_row($result_bill_menu);
 		echo $proff=$row_bill_menu[0];
 		
   
@@ -106,7 +106,7 @@ FROM tbl_bill_menu
 LEFT JOIN tbl_product ON tbl_bill_menu.menu_name = tbl_product.p_code
 WHERE tbl_bill_menu.menu_status = '0'  $data
 ORDER BY tbl_bill_menu.bill_menu_id LIMIT $offset, $rowsPerPage";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_stock. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_stock. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -133,7 +133,7 @@ if(mysql_num_rows($result_book) != 0){
     <td width="117" align="center" class="tbl_header_right"> Date</td>
     
   </tr>
-  <?php while($row_recp=mysql_fetch_assoc($result_book)){
+  <?php while($row_recp=mysqli_fetch_assoc($result_book)){
 	  $pro += ($row_recp["menu_price"]-$row_recp["cprice"])*$row_recp["bill_menu_qty"];
      $summ+= $row_recp["bill_menu_qty"];
   

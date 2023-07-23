@@ -7,8 +7,8 @@ if (!$q) return;
 
 
  $sql = "SELECT p_code,p_name,p_price FROM tbl_product WHERE p_code LIKE '$q%' ORDER BY p_name";  
-$rsd = mysql_query($sql); 
-while($rs = mysql_fetch_row($rsd)) {
+$rsd = mysqli_query($connection,$sql); 
+while($rs = mysqli_fetch_row($rsd)) {
 	//echo "sandun";
 	$p_code=$rs[0];
 	$p_name=$rs[1];

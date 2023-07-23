@@ -30,13 +30,13 @@ $current_time=date('g:i A');
 		
 		
 FROM tbl_bill LEFT JOIN step_bill  ON tbl_bill.bill_id=step_bill.bill_id WHERE tbl_bill.bill_status ='0' AND step_bill.st_id=$st_id   ORDER BY st_id";
-$result_bill=mysql_query($query_bill) or die("Unable to select data from the tbl_bill. ".mysql_error());
-$row_bill=mysql_fetch_assoc($result_bill);
+$result_bill=mysqli_query($connection,$query_bill) or die("Unable to select data from the tbl_bill. ".mysqli_error());
+$row_bill=mysqli_fetch_assoc($result_bill);
 
 
 $query_bill1="SELECT * FROM tbl_message ";
-$result_bill1=mysql_query($query_bill1) or die("Unable to select data from the tbl_message. ".mysql_error());
-$row_bill1=mysql_fetch_assoc($result_bill1);
+$result_bill1=mysqli_query($connection,$query_bill1) or die("Unable to select data from the tbl_message. ".mysqli_error());
+$row_bill1=mysqli_fetch_assoc($result_bill1);
 
 //echo $cash=$row_bill[$_GET['cash']];
 //$credit=$row_bill[$_GET['cash']];

@@ -51,8 +51,8 @@ if($_REQUEST['bill_type'] != ""){
 
 $sql_count="SELECT * FROM tbl_bills WHERE bill_status='0' $data ORDER BY bill_id";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_bills in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_bills in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -91,7 +91,7 @@ if ($pageNum < $maxPage){
 }
 
 $query_stu="SELECT * FROM tbl_bills WHERE bill_status='0' $data ORDER BY bill_id LIMIT $offset, $rowsPerPage";
-$result_stu=mysql_query($query_stu) or die("Unable to select data from the tbl_bills. ".mysql_error());
+$result_stu=mysqli_query($connection,$query_stu) or die("Unable to select data from the tbl_bills. ".mysqli_error());
 if(mysql_num_rows($result_stu) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -107,7 +107,7 @@ if(mysql_num_rows($result_stu) != 0){
     <td width="50" align="center" class="tbl_header_right">Invoice No</td>
     
   </tr>
-  <?php while($row_stu=mysql_fetch_assoc($result_stu)){?>
+  <?php while($row_stu=mysqli_fetch_assoc($result_stu)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#E1F1D8';" onmouseout="this.style.backgroundColor='';">
     <td height="20" align="center" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_stu["bill_id"]; ?></td>
  

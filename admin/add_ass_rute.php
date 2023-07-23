@@ -6,13 +6,13 @@ $current_date=date('Y-m-d');
 
 
 $query_insert="INSERT INTO  tbl_assgn_rute(date,reff,driver,r_a_status,rute) VALUES('".$_POST['date']."','".$_POST['ref']."','".$_POST['dri']."','0','".$_POST['rute']."')";
-	mysql_query($query_insert) or die("unable to insert data in to  the  tbl_assgn_rute".mysql_error());
+	mysqli_query($connection,$query_insert) or die("unable to insert data in to  the  tbl_assgn_rute".mysqli_error());
 
 $count_item=$_POST['count_item'];
 
 $query_bill_menu="SELECT MAX(r_a_id) FROM tbl_assgn_rute WHERE r_a_status='0'";
-$result_bill_menu=mysql_query($query_bill_menu) or die("unable to select data from the tbl_assgn_rute".mysql_error());
-		$row_bill_menu=mysql_fetch_row($result_bill_menu);
+$result_bill_menu=mysqli_query($connection,$query_bill_menu) or die("unable to select data from the tbl_assgn_rute".mysqli_error());
+		$row_bill_menu=mysqli_fetch_row($result_bill_menu);
 		$bill_menu=$row_bill_menu[0];
 for($x=1;$x<=$count_item;$x++){
 	
@@ -31,7 +31,7 @@ for($x=1;$x<=$count_item;$x++){
 			$amount="amount_".$x;
 	 
 	 echo $query_insert="INSERT INTO  tbl_assgn_rute_menu(r_a_id,menu_no,menu_name,bill_menu_qty,menu_price,total,date,status) VALUES('$bill_menu','".$_POST[$p_id]."','".$_POST[$item_name]."','".$_POST[$qty]."','".$_POST[$price]."','".$_POST[$amount]."','$current_date','0')";
-	mysql_query($query_insert) or die("unable to insert data in to  the  tbl_assgn_rute".mysql_error());
+	mysqli_query($connection,$query_insert) or die("unable to insert data in to  the  tbl_assgn_rute".mysqli_error());
 }
 $_SESSION['service_add_com_mes']="Products have been added";
 		

@@ -34,8 +34,8 @@ if($_REQUEST['f_date'] != "" && $_REQUEST['t_date'] != ""){
 
 $sql_count="SELECT * FROM  tbl_grn WHERE grn_status='0' $data ORDER BY grn_id";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_grn in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_grn in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -75,7 +75,7 @@ if ($pageNum < $maxPage){
 
 
 $query_order="SELECT * FROM  tbl_grn WHERE grn_status='0' $data ORDER BY grn_id LIMIT $offset, $rowsPerPage";
-$result_order=mysql_query($query_order) or die("Unable to select data from the tbl_grn. ".mysql_error());
+$result_order=mysqli_query($connection,$query_order) or die("Unable to select data from the tbl_grn. ".mysqli_error());
 if(mysql_num_rows($result_order) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -90,7 +90,7 @@ if(mysql_num_rows($result_order) != 0){
     
     
   </tr>
-  <?php while($row_order=mysql_fetch_assoc($result_order)){?>
+  <?php while($row_order=mysqli_fetch_assoc($result_order)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#D3E4F1';" onmouseout="this.style.backgroundColor='';">
     <td width="50" height="20" align="right" class="border_bottom_left" style="padding-right:3pt;"><?php echo $row_order["grn_id"]; ?></td>
     <td width="60" align="center" class="border_bottom_left"><?php echo $row_order["inv_no"]; ?></td>

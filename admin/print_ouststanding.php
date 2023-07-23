@@ -27,7 +27,7 @@ LEFT JOIN tbl_payment ON tbl_bill.bill_id = tbl_payment.bill_id
 WHERE tbl_bill.bill_status = '0' and activity_status='pending' $data
 GROUP BY tbl_bill.bill_id
 ORDER BY tbl_bill.bill_id";
-$result_drug=mysql_query($query_drug) or die("Unable to select data from the tbl_drugs. ".mysql_error());
+$result_drug=mysqli_query($connection,$query_drug) or die("Unable to select data from the tbl_drugs. ".mysqli_error());
 $tpayment=0;
 $tout=0;
 $tamt=0;
@@ -90,16 +90,16 @@ $numberDays = intval($numberDays);
 	
 	 $query_r="SELECT SUM(rqty*menu_price) FROM tbl_bill_menu WHERE bill_id='{$row_drug['bill_id']}'";
 	
-$result_r=mysql_query($query_r) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_r=mysql_fetch_row($result_r);
+$result_r=mysqli_query($connection,$query_r) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_r=mysqli_fetch_row($result_r);
 		 echo  $bill_r=$row_r[0];
 		?></td>
         <td align="right" class="border_bottom_left_right" style="padding-right:3pt;"><?php 
 		
 		$query_r="SELECT SUM(rqty*menu_price) FROM tbl_bill_menu WHERE bill_id='{$row_drug['bill_id']}'";
 	
-$result_r=mysql_query($query_r) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_r=mysql_fetch_row($result_r);
+$result_r=mysqli_query($connection,$query_r) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_r=mysqli_fetch_row($result_r);
 		   $bill_r=$row_r[0];
 		
 		

@@ -5,7 +5,7 @@ $fane=$_REQUEST['fane']." මහා දේවාලය";
 
 
  $query_insert="INSERT INTO `fane`(`name`) VALUES ('$fane')";
-$res =mysql_query($query_insert) or die(mysql_error());
+$res =mysqli_query($connection,$query_insert) or die(mysqli_error());
 
 if($res){
 	$_SESSION['fane_error_mes']="<label id=\"error\" style=\"color:green\">දේවාල ඇතුලත් කරන ලදී !</label>";

@@ -6,12 +6,12 @@ $book_id=$_REQUEST['book_id'];
 $stu_id=$_REQUEST['stu_id'];
 
 $query_brw_id="SELECT MAX(brw_id) FROM tbl_borrow WHERE stu_id='$stu_id' AND book_id='$book_id'";
-$result_bw_id=mysql_query($query_brw_id) or die("Unable to select data from the tbl_borrow ".mysql_error());
-$row_bw_id=mysql_fetch_row($result_bw_id);
+$result_bw_id=mysqli_query($connection,$query_brw_id) or die("Unable to select data from the tbl_borrow ".mysqli_error());
+$row_bw_id=mysqli_fetch_row($result_bw_id);
 
 $query_brw="SELECT * FROM tbl_borrow WHERE brw_id='$row_bw_id[0]'";
-$result_brw=mysql_query($query_brw) or die("Unable to select data from the tbl_borrow. ".mysql_error());
-$row_brw=mysql_fetch_assoc($result_brw);
+$result_brw=mysqli_query($connection,$query_brw) or die("Unable to select data from the tbl_borrow. ".mysqli_error());
+$row_brw=mysqli_fetch_assoc($result_brw);
 function dateDiff ($d1, $d2) {
 // Return the number of days between the two dates:
 
@@ -63,12 +63,12 @@ function dateDiff ($d1, $d2) {
 <br>
 <?php 
 $query_book="SELECT * FROM tbl_book WHERE book_id='$book_id' AND book_status='0'";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_book. ".mysql_error());
-$row_book=mysql_fetch_assoc($result_book);
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_book. ".mysqli_error());
+$row_book=mysqli_fetch_assoc($result_book);
 
 $query_stu="SELECT * FROM tbl_student WHERE stu_id='$stu_id' AND stu_status='0'";
-$result_stu=mysql_query($query_stu) or die("Unable to select data from the tbl_student. ".mysql_error());
-$row_stu=mysql_fetch_assoc($result_stu);
+$result_stu=mysqli_query($connection,$query_stu) or die("Unable to select data from the tbl_student. ".mysqli_error());
+$row_stu=mysqli_fetch_assoc($result_stu);
 ?>
 <table width="850" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>

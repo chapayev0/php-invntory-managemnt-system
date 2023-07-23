@@ -297,9 +297,9 @@ function message_validation(){
         <td>&nbsp;</td>
         <td align="left" id="cbody"><!-- InstanceBeginEditable name="Editable_Body" --> <?php 
 			  $query_mes="SELECT * FROM tbl_message";
-			  $result_mes=mysql_query($query_mes) or die("Unable to select data from the tbl_message. ".mysql_error());
+			  $result_mes=mysqli_query($connection,$query_mes) or die("Unable to select data from the tbl_message. ".mysqli_error());
 			  if(mysql_num_rows($result_mes) != 0){
-				  $row_mes=mysql_fetch_assoc($result_mes);
+				  $row_mes=mysqli_fetch_assoc($result_mes);
 			  ?>
             <form action="update_message.php" method="post" name="message_form" id="message_form" onsubmit="return message_validation();">
               <input name="mes_id" id="mes_id" type="hidden" value="<?php echo $row_mes["mes_id"]; ?>" />

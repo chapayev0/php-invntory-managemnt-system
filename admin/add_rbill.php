@@ -12,7 +12,7 @@ $current_time = date('g:i A');
 foreach ($_POST['id'] as $key => $id) {
     $q = $_POST['preReturn'][$key] + $_POST['qty'][$key];
    echo  $query = "UPDATE `tbl_bill_menu` SET `rqty` = '{$q}', rdate = '{$current_date}' WHERE `tbl_bill_menu`.`bill_menu_id` = {$id}";
-    mysql_query($query);
+    mysqli_query($connection,$query);
 }
 
 require_once '../library/close.php';

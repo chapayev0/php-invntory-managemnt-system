@@ -5,7 +5,7 @@ $user_id=$_SESSION['user_id'];
 $stu_id=$_POST['stu_id'];
 
 $query_update="UPDATE tbl_student SET stu_name='".$_POST['name']."',stu_id_no='".$_POST['id_no']."',stu_nic='".$_POST['nic']."',stu_address='".$_POST['address']."',stu_tel='".$_POST['tel']."',stu_tp_id='".$_POST['stu_tp_id']."' WHERE stu_id='$stu_id'";
-mysql_query($query_update) or die("Unable to update tbl_student. ".mysql_error());
+mysqli_query($connection,$query_update) or die("Unable to update tbl_student. ".mysqli_error());
 
 
 /*upload photograph*/
@@ -24,7 +24,7 @@ if($_FILES['photo']['name'] != null){
 	
 	if(move_uploaded_file($_FILES['photo']['tmp_name'], $new_upload_path.$stored_object)) {
 		$query_update="UPDATE tbl_student SET stu_photo_url='$file_url' WHERE stu_id='$stu_id'";
-		mysql_query($query_update) or die("Unable to update tbl_student. ".mysql_error());
+		mysqli_query($connection,$query_update) or die("Unable to update tbl_student. ".mysqli_error());
 	} else{
 	} 
 

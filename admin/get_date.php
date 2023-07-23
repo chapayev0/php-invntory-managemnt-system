@@ -2,7 +2,7 @@
 require_once '../library/config.php';
 
 $cus = $_REQUEST['bill_no'];
- $result=mysql_query("SELECT cl_name,nic,address,pay_month FROM tbl_bill where bill_id ='$cus' ORDER BY bill_id DESC LIMIT 1;" ) or die("error".mysql_error());
+ $result=mysqli_query($connection,"SELECT cl_name,nic,address,pay_month FROM tbl_bill where bill_id ='$cus' ORDER BY bill_id DESC LIMIT 1;" ) or die("error".mysqli_error());
 $data=mysql_fetch_array($result);
 
 

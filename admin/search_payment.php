@@ -42,8 +42,8 @@ if($_REQUEST['type'] != ""){
 $sql_count="SELECT * FROM tbl_payment WHERE p_status='0' $data ORDER BY pay_id";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -82,7 +82,7 @@ $last = '&nbsp;'; // nor the last page link
 }
 
 $query_user="SELECT * FROM tbl_payment WHERE p_status='0' $data ORDER BY pay_id LIMIT $offset, $rowsPerPage";
-$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_user. ".mysql_error());
+$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_user. ".mysqli_error());
 if(mysql_num_rows($result_user) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -113,7 +113,7 @@ if(mysql_num_rows($result_user) != 0){
     <td width="50" align="center" class="tbl_header_right">Delete</td>
     
   </tr>
-  <?php while($row_user=mysql_fetch_assoc($result_user)){?>
+  <?php while($row_user=mysqli_fetch_assoc($result_user)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#DCF8FC';" onmouseout="this.style.backgroundColor='';">
     <td width="100" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_user["bill_id"]; ?></td>
     <td width="100" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_user["inv_no"]; ?></td>

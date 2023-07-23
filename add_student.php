@@ -8,11 +8,11 @@ downs_syndrome,cerebral_palsy,congential_hypothyroidism,autism,adhd,epilepsy,mic
 										VALUES('".$_POST['name']."','".$_POST['address']."','".$_POST['tel']."','".$_POST['dob']."','".$_POST['gender']."','".$_POST['downs_syndrome']."','".$_POST['cerebral_palsy']."','".$_POST['congential_hypothyroidism']."','".$_POST['autism']."','".$_POST['adhd']."','".$_POST['epilepsy']."','".$_POST['microcephaly']."','".$_POST['congential_infections']."','".$_POST['live']."','".$_POST['f_name']."','".$_POST['f_tel']."','".$_POST['f_email']."','".$_POST['f_income']."','".$_POST['f_designation']."','".$_POST['m_name']."','".$_POST['m_tel']."','".$_POST['m_email']."','".$_POST['m_income']."','".$_POST['m_designation']."','".$_POST['g_name']."','".$_POST['g_tel']."','".$_POST['g_email']."','".$_POST['g_income']."','".$_POST['g_designation']."','".$_POST['information']."','','".$_POST['st_id']."','0','','".$_POST['other_income']."')";
 
 
-mysql_query($query_student) or die("Unable to insert data into the tbl_student. ".mysql_error());
+mysqli_query($connection,$query_student) or die("Unable to insert data into the tbl_student. ".mysqli_error());
 
 $query_st_id="SELECT MAX(st_id) FROM tbl_student";
-$result_st_id=mysql_query($query_st_id) or die("Unable to select data from the tbl_student. ".mysql_error());
-$row_st_id=mysql_fetch_row($result_st_id);
+$result_st_id=mysqli_query($connection,$query_st_id) or die("Unable to select data from the tbl_student. ".mysqli_error());
+$row_st_id=mysqli_fetch_row($result_st_id);
 
 /*upload photograph*/
 $upload_path="../photoes";
@@ -32,7 +32,7 @@ if($_FILES['photo']['name'] != null){
 	
 	if(move_uploaded_file($_FILES['photo']['tmp_name'], $new_upload_path.$stored_object)) {
 		$query_update="UPDATE tbl_student SET st_photo_url='$file_url' WHERE st_id='$row_st_id[0]'";
-		mysql_query($query_update) or die("Unable to update tbl_student. ".mysql_error());
+		mysqli_query($connection,$query_update) or die("Unable to update tbl_student. ".mysqli_error());
 	} else{
 	} 
 
@@ -53,7 +53,7 @@ $bc->build($_POST['st_id'],'','',$barcode_url);
 $st_id=$_POST['st_id'];
 
 $query_update="UPDATE tbl_student SET stu_barcode_url='$barcode_url' , stu_barcode='$st_id'  WHERE st_id='$row_st_id[0]'";
-mysql_query($query_update) or die("Unable to update tbl_student. ".mysql_error());
+mysqli_query($connection,$query_update) or die("Unable to update tbl_student. ".mysqli_error());
 		
 
 $_SESSION['student_com_mes']="Record has been added";

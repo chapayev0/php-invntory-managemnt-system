@@ -63,8 +63,8 @@ if($_REQUEST['stu_tp_id'] != ""){
 
 $sql_count="SELECT * FROM tbl_student WHERE stu_status='0' $data ORDER BY stu_name";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_student in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_student in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -103,7 +103,7 @@ if ($pageNum < $maxPage){
 }
 
 $query_stu="SELECT * FROM tbl_student WHERE stu_status='0' $data ORDER BY stu_name LIMIT $offset, $rowsPerPage";
-$result_stu=mysql_query($query_stu) or die("Unable to select data from the tbl_student. ".mysql_error());
+$result_stu=mysqli_query($connection,$query_stu) or die("Unable to select data from the tbl_student. ".mysqli_error());
 if(mysql_num_rows($result_stu) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -119,7 +119,7 @@ if(mysql_num_rows($result_stu) != 0){
     <td width="50" align="center" class="tbl_header_right">View</td>
     <td width="50" align="center" class="tbl_header">Delete</td>
   </tr>
-  <?php while($row_stu=mysql_fetch_assoc($result_stu)){?>
+  <?php while($row_stu=mysqli_fetch_assoc($result_stu)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#E1F1D8';" onmouseout="this.style.backgroundColor='';">
     <td height="20" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_stu["stu_name"]; ?></td>
     <td align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo getStudentType($row_stu["stu_tp_id"]); ?></td>

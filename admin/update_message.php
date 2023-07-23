@@ -12,7 +12,7 @@ $tel2=$_POST['tel2'];
 $current_date=date('Y-m-d');
 
 $query_update="UPDATE tbl_message SET mes_u_id='$user_id',tel1='$tel1',tel2='$tel2',address1='$address1',address2='$address2',mes_date='$current_date' WHERE mes_id='$mes_id'";
-mysql_query($query_update) or die("Unable to update tbl_message. ".mysql_error());
+mysqli_query($connection,$query_update) or die("Unable to update tbl_message. ".mysqli_error());
 $_SESSION['mes_update']="Message has been updated";
 
 require_once '../library/close.php';

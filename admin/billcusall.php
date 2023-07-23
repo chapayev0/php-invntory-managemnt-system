@@ -13,11 +13,11 @@ $bill_id=$_POST['bill_id'];
 
 $bill_id=$_POST['bill_id'];
 $query_bill="SELECT * FROM tbl_bill WHERE bill_id='$bill_id' AND bill_status='0'";
-$result_bill=mysql_query($query_bill) or die("Unable to select data from the step_bill. ".mysql_error());
+$result_bill=mysqli_query($connection,$query_bill) or die("Unable to select data from the step_bill. ".mysqli_error());
 $row_bill=mysql_fetch_assoc($result_bill);
 
 $query_bill1="SELECT * FROM tbl_message ";
-$result_bill1=mysql_query($query_bill1) or die("Unable to select data from the tbl_message. ".mysql_error());
+$result_bill1=mysqli_query($connection,$query_bill1) or die("Unable to select data from the tbl_message. ".mysqli_error());
 $row_bill1=mysql_fetch_assoc($result_bill1);
 
 
@@ -192,13 +192,13 @@ body {
 $gross_amount=0;
 $p_discount=0;
 $query_item="SELECT * FROM step_bill WHERE bill_id='$bill_id'";
-$result_item=mysql_query($query_item) or die("Unable to select data from the step_bill_menu. ".mysql_error());
+$result_item=mysqli_query($connection,$query_item) or die("Unable to select data from the step_bill_menu. ".mysqli_error());
 
 
 
 $sold_item=0;
 $query_item_count="SELECT COUNT(st_id) as count FROM step_bill WHERE bill_id='$bill_id'";
-$result_item_count=mysql_query($query_item_count) or die("Unable to select data from the step_bill_menuff. ".mysql_error());
+$result_item_count=mysqli_query($connection,$query_item_count) or die("Unable to select data from the step_bill_menuff. ".mysqli_error());
 while($row_item_count=mysql_fetch_assoc($result_item_count)){
 	$sold_item=$row_item_count['count'];
 }

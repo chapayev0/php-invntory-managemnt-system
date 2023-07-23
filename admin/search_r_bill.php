@@ -55,8 +55,8 @@ if($_REQUEST['f_date'] != "" && $_REQUEST['t_date']){
 $sql_count="SELECT *  FROM tbl_bill  WHERE bill_status ='0' AND activity_status='pending' $data ORDER BY bill_date";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -98,7 +98,7 @@ $last = '&nbsp;'; // nor the last page link
 
 $daily_profitt=0;
 /*$query_bill_tt="SELECT *  FROM tbl_bill_menu   $data ORDER BY bill_id";
-$result_bill_tt=mysql_query($query_bill_tt) or die("error".mysql_error());
+$result_bill_tt=mysqli_query($connection,$query_bill_tt) or die("error".mysqli_error());
 while($row_bill_tt=mysql_fetch_array(($result_bill_tt))){
 	
 	$tot_p = $row_bill_tt["tot_profit"];
@@ -114,7 +114,7 @@ while($row_bill_tt=mysql_fetch_array(($result_bill_tt))){
 $daily_profit=0;
 $daily_amount=0;
 $query_bill_t="SELECT *  FROM tbl_bill  WHERE bill_status ='0' $data ORDER BY bill_id";
-$result_bill_t=mysql_query($query_bill_t) or die("error".mysql_error());
+$result_bill_t=mysqli_query($connection,$query_bill_t) or die("error".mysqli_error());
 while($row_bill_t=mysql_fetch_array(($result_bill_t))){
 	$cash = $row_bill_t["cash"];
 	$bal = $row_bill_t["balance"];
@@ -141,7 +141,7 @@ while($row_bill_t=mysql_fetch_array(($result_bill_t))){
  $query_bill="SELECT *  FROM tbl_bill  WHERE bill_status ='0' AND activity_status='pending' $data ORDER BY bill_date";
 
 //$query_bill="SELECT * FROM tbl_bill WHERE u_id='$user_id'  AND bill_status ='0' $data ORDER BY bill_id DESC";
-$result_bill=mysql_query($query_bill) or die("error".mysql_error());
+$result_bill=mysqli_query($connection,$query_bill) or die("error".mysqli_error());
 if(mysql_num_rows($result_bill) != 0){
 ?>
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -186,7 +186,7 @@ if(mysql_num_rows($result_bill) != 0){
 		  $discount=0;
 		  $p_discount=0;
 		  $query_item="SELECT * FROM tbl_bill_menu WHERE bill_id='".$row_bill['bill_id']."' AND u_id='$user_id'";
-		  $result_item=mysql_query($query_item) or die("Unable to select data from the tbl_bill_product. ".mysql_error());
+		  $result_item=mysqli_query($connection,$query_item) or die("Unable to select data from the tbl_bill_product. ".mysqli_error());
 		  while($row_item=mysql_fetch_array($result_item)){
 				$total +=($row_item["menu_price"]*$row_item["bill_menu_qty"]);//get all menus put +mark
 				$ser_charge=(($total)-($p_discount))*10/100;

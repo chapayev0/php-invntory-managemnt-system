@@ -62,10 +62,10 @@ for($i=0;$i<count($line);$i++){
 			//echo $address;
 			/*Check Shop name is already existed or not*/
 			//$query_sh="SELECT con_id FROM tbl_cotact WHERE con_name='$outlet_name' AND u_id='$u_id' AND r_id='$r_id' AND con_address='$address'";
-			//$result_sh=mysql_query($query_sh) or die("Unable to select data from the tbl_cotact".mysql_error());
+			//$result_sh=mysqli_query($connection,$query_sh) or die("Unable to select data from the tbl_cotact".mysqli_error());
 			//if(mysql_num_rows($result_sh) == 0){
 				echo $query_insert="INSERT INTO tbl_charity(c_name,cus_id,etf,date,fname,section) VALUES('$name','$nic','$epf','$current_date','$fname','$section')";
-				mysql_query($query_insert) or die("Unable to insert data into the tbl_charity".mysql_error());
+				mysqli_query($connection,$query_insert) or die("Unable to insert data into the tbl_charity".mysqli_error());
 			}
 		}
 	//}

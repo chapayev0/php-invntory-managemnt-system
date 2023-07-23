@@ -7,7 +7,7 @@ $item_count=$_POST['item_count'];
 for($x=1;$x<=$item_count;$x++){
 	$cat="cat_".$x;
 	 $query_insert="INSERT INTO tbl_maincategory(scat_name,scat_status,u_id) VALUES('".$_POST[$cat]."','0','$user_id')";
-	mysql_query($query_insert) or die("Unable to insert data into the tbl_outlet. ".mysql_error());
+	mysqli_query($connection,$query_insert) or die("Unable to insert data into the tbl_outlet. ".mysqli_error());
 }
 $_SESSION['user_category_mes']="Record/s added successfully";
 

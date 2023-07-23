@@ -7,8 +7,8 @@ $user_type=$_SESSION['user_type'];
 $grn_id=$_GET['grn_id'];
 
 	$query_order="SELECT * FROM tbl_grn WHERE grn_id='$grn_id'";
-	$result_order=mysql_query($query_order) or die("Unable to select data from the tbl_grn. ".mysql_error());
-	$row_order=mysql_fetch_assoc($result_order);
+	$result_order=mysqli_query($connection,$query_order) or die("Unable to select data from the tbl_grn. ".mysqli_error());
+	$row_order=mysqli_fetch_assoc($result_order);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="../Templates/admin_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -307,7 +307,7 @@ $grn_id=$_GET['grn_id'];
                     </br>
                     <?php 
         $query_stock="SELECT * FROM tbl_stock WHERE grn_id='$grn_id'";
-        $result_stock=mysql_query($query_stock) or die("Unable to select data from the tbl_stock. ".mysql_error());
+        $result_stock=mysqli_query($connection,$query_stock) or die("Unable to select data from the tbl_stock. ".mysqli_error());
         if(mysql_num_rows($result_stock) != 0){
             $total_amount=0;
         ?>
@@ -333,7 +333,7 @@ $grn_id=$_GET['grn_id'];
                         
                       </tr>
                       <?php 
-            while($row_stock=mysql_fetch_assoc($result_stock)){
+            while($row_stock=mysqli_fetch_assoc($result_stock)){
                 $total_amount +=round(($row_stock["st_price"]*$row_stock["st_qty"]),2);
                 ?>
                       <tr class="body_text">

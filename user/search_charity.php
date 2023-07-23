@@ -32,8 +32,8 @@ $daily_amount=0;
 
 $sql_count="SELECT * FROM tbl_charity WHERE c_status='0' $data ORDER BY c_name";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_charity in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_charity in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -72,7 +72,7 @@ if ($pageNum < $maxPage){
 }
 
  $query_book="SELECT * FROM tbl_charity WHERE c_status='0' $data ORDER BY c_id LIMIT $offset, $rowsPerPage";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_charity. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_charity. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -85,7 +85,7 @@ if(mysql_num_rows($result_book) != 0){
    
     <td width="40" align="center" class="tbl_header">Delete</td>
   </tr>
-  <?php while($row_recp=mysql_fetch_assoc($result_book)){
+  <?php while($row_recp=mysqli_fetch_assoc($result_book)){
   
   
   

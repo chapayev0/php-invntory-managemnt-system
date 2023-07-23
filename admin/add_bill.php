@@ -15,16 +15,16 @@ if($_POST['type']=='Cash'){
 	
 	 $query_insert="INSERT INTO  tbl_bill(bill_time,bill_date,bill_status,u_id,activity_status,total,c_id,bill_discount,tot,inv_no,ftotal,po,pay_type) 
 VALUES('$current_time','".$_POST['t_date']."','0','$user_id','completed','".$_POST['total']."','".$_POST['name']."','".$_POST['dis']."','".$_POST['tot']."','".$_POST['inv_no']."','".$_POST['tot']."','".$_POST['po']."','".$_POST['type']."')";
-mysql_query($query_insert) or die("unable to insert data in to the tbl_bill".mysql_error());
+mysqli_query($connection,$query_insert) or die("unable to insert data in to the tbl_bill".mysqli_error());
 
 $query_bill_menu1="SELECT MAX(bill_id) FROM tbl_bill WHERE bill_status='0'";
-$result_bill_menu1=mysql_query($query_bill_menu1) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_bill_menu1=mysql_fetch_row($result_bill_menu1);
+$result_bill_menu1=mysqli_query($connection,$query_bill_menu1) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_bill_menu1=mysqli_fetch_row($result_bill_menu1);
 		$bill_menu1=$row_bill_menu1[0];
 	
 
 echo $query_insertp="INSERT INTO  tbl_payment(bill_id,cus_name,amount,p_status,date,type,c_status) VALUES('$bill_menu1','".$_POST['name']."','".$_POST['tot']."','0','".$_POST['date']."','cash','0')";
-mysql_query($query_insertp) or die("Unable to insert data into the tbl_emp. ".mysql_error());
+mysqli_query($connection,$query_insertp) or die("Unable to insert data into the tbl_emp. ".mysqli_error());
 
 	
 	}else 
@@ -33,15 +33,15 @@ mysql_query($query_insertp) or die("Unable to insert data into the tbl_emp. ".my
 		
 		$query_insert="INSERT INTO  tbl_bill(bill_time,bill_date,bill_status,u_id,activity_status,total,c_id,bill_discount,tot,inv_no,ftotal,po,pay_type) 
 VALUES('$current_time','".$_POST['t_date']."','0','$user_id','pending','".$_POST['total']."','".$_POST['name']."','".$_POST['dis']."','".$_POST['tot']."','".$_POST['inv_no']."','".$_POST['tot']."','".$_POST['po']."','".$_POST['type']."')";
-mysql_query($query_insert) or die("unable to insert data in to the tbl_bill".mysql_error());
+mysqli_query($connection,$query_insert) or die("unable to insert data in to the tbl_bill".mysqli_error());
 }
 		
   
 	$count_item=$_POST['count_item'];
 	
 $query_bill_menu="SELECT MAX(bill_id) FROM tbl_bill WHERE bill_status='0'";
-$result_bill_menu=mysql_query($query_bill_menu) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_bill_menu=mysql_fetch_row($result_bill_menu);
+$result_bill_menu=mysqli_query($connection,$query_bill_menu) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_bill_menu=mysqli_fetch_row($result_bill_menu);
 		$bill_menu=$row_bill_menu[0];
 		
 		for($x=1;$x<=$count_item;$x++){
@@ -62,7 +62,7 @@ $result_bill_menu=mysql_query($query_bill_menu) or die("unable to select data fr
  $query_insert_menu="INSERT INTO tbl_bill_menu(bill_id,menu_name,menu_price,bill_menu_qty,u_id,total,menu_status,date,dis,name,war) 
  VALUES('$bill_menu','".$_POST[$item_name]."','".$_POST[$price]."','".$_POST[$qty]."','$user_id','".$_POST[$price]."'*'".$_POST[$qty]."','0','$current_date','".$_POST[$discount]."','".$_POST[$name]."','".$_POST[$war]."')";
 
-mysql_query($query_insert_menu) or die("Unable to insert data in to the tbl_bill_menu. ".mysql_error());
+mysqli_query($connection,$query_insert_menu) or die("Unable to insert data in to the tbl_bill_menu. ".mysqli_error());
 
 
 
@@ -83,7 +83,7 @@ mysql_query($query_insert_menu) or die("Unable to insert data in to the tbl_bill
 		
 	
 	
-		 $item_qty_result=mysql_query("SELECT * FROM tbl_stockall WHERE code ='$_REQUEST[$item_name]' AND status='0'") or die("Error :".mysql_error());
+		 $item_qty_result=mysqli_query($connection,"SELECT * FROM tbl_stockall WHERE code ='$_REQUEST[$item_name]' AND status='0'") or die("Error :".mysqli_error());
 		$item_qty_data=mysql_fetch_array($item_qty_result);
 		 $_REQUEST[$qty]."**********".$item_qty_data['qty'];
 		$remain = $item_qty_data['qty'];
@@ -93,7 +93,7 @@ mysql_query($query_insert_menu) or die("Unable to insert data in to the tbl_bill
 					
 		echo  $update_qty = $item_qty_data['qty'] - $_REQUEST[$qty]; 
 		
-		 mysql_query("update tbl_stockall set qty='$update_qty' where code ='$name'")  or die("Error :".mysql_error());
+		 mysqli_query($connection,"update tbl_stockall set qty='$update_qty' where code ='$name'")  or die("Error :".mysqli_error());
 		
 		
 		}

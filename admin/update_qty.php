@@ -11,10 +11,10 @@ $name=$_POST['name'];
 
 
  $query_update = "UPDATE  tbl_load_item SET  ld_item_code =  '".$_POST['id']."',ld_item_name =  '".$_POST['name']."',sell_qty=  '".$_POST['qty']."',ld_item_remain_qty='".$_POST['b_qty']."'-'".$_POST['qty']."',u_id='$user_id' WHERE  ld_item_id='$ld_item_id'";
-mysql_query($query_update) or die("Unable to update tbl_donation.".mysql_error());
+mysqli_query($connection,$query_update) or die("Unable to update tbl_donation.".mysqli_error());
 
 
- $item_qty_result=mysql_query("SELECT MIN(st_id) AS id,st_remain_qty FROM tbl_stock WHERE p_name ='".$_POST['name']."' AND st_status='0'") or die("Error :".mysql_error());
+ $item_qty_result=mysqli_query($connection,"SELECT MIN(st_id) AS id,st_remain_qty FROM tbl_stock WHERE p_name ='".$_POST['name']."' AND st_status='0'") or die("Error :".mysqli_error());
 		$item_qty_data=mysql_fetch_array($item_qty_result);
 		 $id=$item_qty_data['id'];
 						
@@ -22,7 +22,7 @@ mysql_query($query_update) or die("Unable to update tbl_donation.".mysql_error()
 		
 		
 		
-	mysql_query("update tbl_stock set st_remain_qty='$update_qty' where st_id = '$id'")  or die("Error :".mysql_error());
+	mysqli_query($connection,"update tbl_stock set st_remain_qty='$update_qty' where st_id = '$id'")  or die("Error :".mysqli_error());
 		
 
 

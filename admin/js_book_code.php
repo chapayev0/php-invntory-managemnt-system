@@ -6,8 +6,8 @@ $q = strtolower($_GET["q"]);
 //if (!$q) return;
 
 $sql = "SELECT book_id,book_name,book_code,stu_id,book_br_status FROM tbl_book WHERE book_code LIKE'$q%' AND book_status='0' ORDER BY book_id";
-$rsd = mysql_query($sql);
-while($rs = mysql_fetch_row($rsd)) {
+$rsd = mysqli_query($connection,$sql);
+while($rs = mysqli_fetch_row($rsd)) {
 	$bid=$rs[0];
 	$bname=$rs[1];
 	$bcode=$rs[2];

@@ -31,8 +31,8 @@ $total=0;
 
 $sql_count="SELECT * FROM tbl_stockall WHERE status ='0' $data ORDER BY id ";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_stock in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_stock in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -71,7 +71,7 @@ if ($pageNum < $maxPage){
 }
 
  $query_book="SELECT * FROM tbl_stockall WHERE status ='0' $data";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_stock. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_stock. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -85,7 +85,7 @@ if(mysql_num_rows($result_book) != 0){
     <td width="136" align="center" class="border_top_bottom_left" > Qty</td>
     <td width="133" align="center" class="border_top_bottom_left_right" >Amount</td>
   </tr>
-  <?php while($row_recp=mysql_fetch_assoc($result_book)){
+  <?php while($row_recp=mysqli_fetch_assoc($result_book)){
   
   
   

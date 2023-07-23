@@ -7,15 +7,15 @@ $idKapuwa=$_POST['id'];
 
 function total($k_id){
 	$query_user="SELECT SUM(rec_amount)  FROM tbl_reciept WHERE `id_kapuwa`='$k_id' AND paid='0'";
-	$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_user. ".mysql_error());
-	$row_user=mysql_fetch_row($result_user);
+	$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_user. ".mysqli_error());
+	$row_user=mysqli_fetch_row($result_user);
 	return $row_user[0];
 }
 
 function per($k_id){
 	$query_user="SELECT k_persentage  FROM tbl_kapuwa WHERE `k_id`='$k_id'";
-	$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_user. ".mysql_error());
-	$row_user=mysql_fetch_row($result_user);
+	$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_user. ".mysqli_error());
+	$row_user=mysqli_fetch_row($result_user);
 	return $row_user[0];
 }
 
@@ -23,8 +23,8 @@ function per($k_id){
 
 
 
- $kapuwa_result = mysql_query("SELECT *  FROM `tbl_kapuwa` WHERE `k_id`='$idKapuwa'") or die(mysql_error());
- $kapuwa_data = mysql_fetch_assoc($kapuwa_result);
+ $kapuwa_result = mysqli_query($connection,"SELECT *  FROM `tbl_kapuwa` WHERE `k_id`='$idKapuwa'") or die(mysqli_error());
+ $kapuwa_data = mysqli_fetch_assoc($kapuwa_result);
 
  ?>
 

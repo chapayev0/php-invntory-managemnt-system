@@ -7,8 +7,8 @@ $user_id=$_SESSION['user_id'];
 $user_type=$_SESSION['user_type'];
 
 	$query_user="SELECT * FROM tbl_assgn_rute WHERE r_a_id='".$_GET['r_a_id']."'";
-	$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_user. ".mysql_error());
-	$row_user=mysql_fetch_assoc($result_user);
+	$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_user. ".mysqli_error());
+	$row_user=mysqli_fetch_assoc($result_user);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/admin_template.dwt.php" codeOutsideHTMLIsLocked="false" -->

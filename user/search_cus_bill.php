@@ -76,8 +76,8 @@ GROUP BY tbl_bill.bill_id
 ORDER BY tbl_bill.bill_id ";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -122,7 +122,7 @@ $tot1=0;
 $t_out=0;
 $t_pay=0;
 /*$query_bill_tt="SELECT *  FROM tbl_bill_menu   $data ORDER BY bill_id";
-$result_bill_tt=mysql_query($query_bill_tt) or die("error".mysql_error());
+$result_bill_tt=mysqli_query($connection,$query_bill_tt) or die("error".mysqli_error());
 while($row_bill_tt=mysql_fetch_array(($result_bill_tt))){
 	
 	$tot_p = $row_bill_tt["tot_profit"];
@@ -145,7 +145,7 @@ LEFT JOIN tbl_payment ON tbl_bill.bill_id = tbl_payment.bill_id
 WHERE tbl_bill.bill_status = '0' $data
 GROUP BY tbl_bill.bill_id
 ORDER BY tbl_bill.bill_id DESC LIMIT $offset, $rowsPerPage";
-$result_bill=mysql_query($query_bill) or die("error1".mysql_error());
+$result_bill=mysqli_query($connection,$query_bill) or die("error1".mysqli_error());
 if(mysql_num_rows($result_bill) != 0){
 ?>
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -216,7 +216,7 @@ $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24))
 		  $discount=0;
 		  $p_discount=0;
 		  $query_item="SELECT * FROM tbl_bill_menu WHERE bill_id='".$row_bill['bill_id']."' AND u_id='$user_id'";
-		  $result_item=mysql_query($query_item) or die("Unable to select data from the tbl_bill_product. ".mysql_error());
+		  $result_item=mysqli_query($connection,$query_item) or die("Unable to select data from the tbl_bill_product. ".mysqli_error());
 		  while($row_item=mysql_fetch_array($result_item)){
 				$total +=($row_item["menu_price"]*$row_item["bill_menu_qty"]);//get all menus put +mark
 				$ser_charge=(($total)-($p_discount))*10/100;
@@ -251,8 +251,8 @@ $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24))
 	
 	 $query_r="SELECT SUM(rqty*menu_price) FROM tbl_bill_menu WHERE bill_id='{$row_bill['bill_id']} ' and dis='0'";
 	
-$result_r=mysql_query($query_r) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_r=mysql_fetch_row($result_r);
+$result_r=mysqli_query($connection,$query_r) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_r=mysqli_fetch_row($result_r);
 		
 		
 		  $bill_r=$row_r[0];

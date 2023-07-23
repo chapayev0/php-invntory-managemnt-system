@@ -12,7 +12,7 @@ $user_type = $_SESSION['user_type'];
 $bill_id = $_GET['bill_id'];
 
 $query_stock = "SELECT * FROM  tbl_bill_menu WHERE bill_id='{$_REQUEST['bill_id']}'";
-$result_stock = mysql_query($query_stock) or die("Unable to select data from the tbl_stock. " . mysql_error());
+$result_stock = mysqli_query($connection,$query_stock) or die("Unable to select data from the tbl_stock. " . mysqli_error());
 
 if (mysql_num_rows($result_stock) != 0) {
     $total_amount = 0;
@@ -46,7 +46,7 @@ if (mysql_num_rows($result_stock) != 0) {
             <td width="21">&nbsp;</td>
         </tr>
         <?php
-        while ($row_stock = mysql_fetch_assoc($result_stock)) {
+        while ($row_stock = mysqli_fetch_assoc($result_stock)) {
             $qq = $row_stock["bill_menu_qty"];
 
             //$total_amount +=round(($row_stock["st_price"]*$row_stock["st_qty"]),2);
@@ -72,8 +72,8 @@ if (mysql_num_rows($result_stock) != 0) {
             //$tot+=$qq 
         }
         $query_order = "SELECT * FROM tbl_bill WHERE bill_id='$bill_id'";
-        $result_order = mysql_query($query_order) or die("Unable to select data from the tbl_grn. " . mysql_error());
-        $row_order = mysql_fetch_assoc($result_order);
+        $result_order = mysqli_query($connection,$query_order) or die("Unable to select data from the tbl_grn. " . mysqli_error());
+        $row_order = mysqli_fetch_assoc($result_order);
         ?>
         <tr>
             <td height="21">&nbsp;</td>

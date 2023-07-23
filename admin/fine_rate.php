@@ -303,7 +303,7 @@ function form_submission(btn_id,form_id){
         <div id="helpdiv" align="center" class="red_text"><?php if(isset($_SESSION['fine_com_mes'])){echo $_SESSION['fine_com_mes'];}?><?php if(isset($_SESSION['fine_up_mes'])){echo $_SESSION['fine_up_mes'];}?></div>
         <?php 
 		$query_fine="SELECT f_rate FROM tbl_fine";
-		$result_fine=mysql_query($query_fine) or die("Unable to select data from the tbl_fine. ".mysql_error());
+		$result_fine=mysqli_query($connection,$query_fine) or die("Unable to select data from the tbl_fine. ".mysqli_error());
 		if(mysql_num_rows($result_fine) == 0){
 		?>
           <form action="add_fine_rate.php" method="post" name="fine_form" id="fine_form" onsubmit="return fine_rate_validation();">
@@ -330,7 +330,7 @@ function form_submission(btn_id,form_id){
           </table>
           </form>
           <?php }else{
-			  $row_fine=mysql_fetch_row($result_fine);
+			  $row_fine=mysqli_fetch_row($result_fine);
 			  ?>
           <form action="update_fine_rate.php" method="post" name="fine_form" id="fine_form" onsubmit="return fine_rate_validation();">
           <table width="295" border="0" align="center" cellpadding="0" cellspacing="0">

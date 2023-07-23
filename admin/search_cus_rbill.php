@@ -46,8 +46,8 @@ if($_REQUEST['f_date'] != "" && $_REQUEST['t_date']){
 $sql_count="SELECT * FROM tbl_bill_menu  ORDER BY bill_id ";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_contrac in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -93,7 +93,7 @@ $daily_profitt=0;
 
 
  $query_bill="SELECT * FROM tbl_bill_menu where rqty!=0  ORDER BY bill_id";
-$result_bill=mysql_query($query_bill) or die("error1".mysql_error());
+$result_bill=mysqli_query($connection,$query_bill) or die("error1".mysqli_error());
 if(mysql_num_rows($result_bill) != 0){
 ?>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -112,7 +112,7 @@ if(mysql_num_rows($result_bill) != 0){
 		  $discount=0;
 		  $p_discount=0;
 		  $query_item="SELECT * FROM tbl_bill_menu WHERE bill_id='".$row_bill['bill_id']."' AND u_id='$user_id'";
-		  $result_item=mysql_query($query_item) or die("Unable to select data from the tbl_bill_product. ".mysql_error());
+		  $result_item=mysqli_query($connection,$query_item) or die("Unable to select data from the tbl_bill_product. ".mysqli_error());
 		  while($row_item=mysql_fetch_array($result_item)){
 				$total +=($row_item["menu_price"]*$row_item["bill_menu_qty"]);//get all menus put +mark
 				$ser_charge=(($total)-($p_discount))*10/100;

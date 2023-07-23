@@ -9,12 +9,12 @@ LEFT JOIN tbl_charity ON tbl_bill.c_id = tbl_charity.c_id
 LEFT JOIN tbl_payment ON tbl_bill.bill_id = tbl_payment.bill_id
 WHERE tbl_bill.bill_status = '0' and tbl_payment.c_status='1'  and tbl_bill.bill_id='$bill_id'
 ";
-	$result_order=mysql_query($query_order) or die("Unable to select data from the tbl_grn. ".mysql_error());
-	$row_order=mysql_fetch_assoc($result_order);
+	$result_order=mysqli_query($connection,$query_order) or die("Unable to select data from the tbl_grn. ".mysqli_error());
+	$row_order=mysqli_fetch_assoc($result_order);
 
 
 $query_drug="SELECT * FROM tbl_bill_menu WHERE bill_id='$bill_id'";
-$result_drug=mysql_query($query_drug) or die("Unable to select data from the tbl_drugs. ".mysql_error());
+$result_drug=mysqli_query($connection,$query_drug) or die("Unable to select data from the tbl_drugs. ".mysqli_error());
 $tpayment=0;
 $tout=0;
 $tamt=0;

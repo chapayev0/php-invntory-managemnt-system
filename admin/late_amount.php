@@ -7,8 +7,8 @@ $user_type=$_SESSION['user_type'];
 
 	$pay_id=$_REQUEST['pay_id'];
 	$query_book="SELECT * FROM  tbl_payment WHERE pay_id='$pay_id' AND p_status='0'";
-	$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_book=mysql_fetch_assoc($result_book);
+	$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_book=mysqli_fetch_assoc($result_book);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

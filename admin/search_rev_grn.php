@@ -34,8 +34,8 @@ $query_bill_menu="SELECT SUM(tbl_product.cprice*tbl_stockall.qty),tbl_product.p_
   FROM tbl_stockall 
    RIGHT JOIN  tbl_product ON  
   tbl_stockall.p_id =tbl_product.p_id WHERE tbl_product.p_status ='0'";
-$result_bill_menu=mysql_query($query_bill_menu) or die("unable to select data from the tbl_bill".mysql_error());
-		$row_bill_menu=mysql_fetch_row($result_bill_menu);
+$result_bill_menu=mysqli_query($connection,$query_bill_menu) or die("unable to select data from the tbl_bill".mysqli_error());
+		$row_bill_menu=mysqli_fetch_row($result_bill_menu);
 		echo $bill_menu=$row_bill_menu[0];
 	
 
@@ -49,8 +49,8 @@ $sql_count="SELECT tbl_product.p_name,tbl_product.p_code,tbl_product.war,tbl_pro
    RIGHT JOIN  tbl_product ON  
   tbl_stockall.p_id =tbl_product.p_id WHERE tbl_product.p_status ='0' $data ORDER BY id ";
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_stock in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_stock in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -92,7 +92,7 @@ if ($pageNum < $maxPage){
   FROM tbl_stockall 
    RIGHT JOIN  tbl_product ON  
   tbl_stockall.p_id =tbl_product.p_id WHERE tbl_product.p_status ='0' $data  ORDER BY tbl_product.cat LIMIT $offset, $rowsPerPage";
-$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_stock. ".mysql_error());
+$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_stock. ".mysqli_error());
 if(mysql_num_rows($result_book) != 0){
 ?>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -121,7 +121,7 @@ if(mysql_num_rows($result_book) != 0){
     <td width="118" align="center" class="tbl_header_right">Edit</td>
     
   </tr>
-  <?php while($row_recp=mysql_fetch_row($result_book)){
+  <?php while($row_recp=mysqli_fetch_row($result_book)){
   
   
   

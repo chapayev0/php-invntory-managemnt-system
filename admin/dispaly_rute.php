@@ -296,7 +296,7 @@ function cat_validation(cat_name){
         <td>&nbsp;</td>
         <td align="left" id="cbody"><!-- InstanceBeginEditable name="Editable_Body" --> <?php 
 		$query_cat="SELECT * FROM  tbl_rute WHERE r_status='0' ORDER BY r_name";
-		$result_cat=mysql_query($query_cat) or die("Unable to select data from the tbl_category. ".mysql_error());
+		$result_cat=mysqli_query($connection,$query_cat) or die("Unable to select data from the tbl_category. ".mysqli_error());
 		if(mysql_num_rows($result_cat) != 0){
 			$count=0;
 		?>
@@ -305,7 +305,7 @@ function cat_validation(cat_name){
                       <td width="350" height="25" align="center" class="tbl_header_right">EDIT CATEGORY</td>
                       <td width="50" align="center" class="tbl_header">Edit</td>
                     </tr>
-                    <?php while($row_cat=mysql_fetch_assoc($result_cat)){ $count++; ?>
+                    <?php while($row_cat=mysqli_fetch_assoc($result_cat)){ $count++; ?>
                     <tr class="body_text">
                       <td height="20" colspan="2" align="left"><div id="cat_div_<?php echo $count; ?>">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">

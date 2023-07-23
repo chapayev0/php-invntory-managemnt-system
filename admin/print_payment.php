@@ -28,7 +28,7 @@ if($_REQUEST['type'] != ""){
 }
 
 $query_drug="SELECT * FROM tbl_payment WHERE p_status='0' $data ORDER BY pay_id";
-$result_drug=mysql_query($query_drug) or die("Unable to select data from the tbl_drugs. ".mysql_error());
+$result_drug=mysqli_query($connection,$query_drug) or die("Unable to select data from the tbl_drugs. ".mysqli_error());
 $tpayment=0;
 $tout=0;
 $tamt=0;

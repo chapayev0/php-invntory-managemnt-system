@@ -7,8 +7,8 @@ if (!$q) return;
 
 
  $sql = "SELECT p_code,p_price,p_name,war FROM tbl_product WHERE p_status='0' and p_code LIKE '$q%' ORDER BY p_code";  
-$rsd = mysql_query($sql); 
-while($rs = mysql_fetch_row($rsd)) {
+$rsd = mysqli_query($connection,$sql); 
+while($rs = mysqli_fetch_row($rsd)) {
 	//echo "pille";
 	//$p_code=$rs[0];
 	$p_name=$rs[0];

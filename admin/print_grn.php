@@ -4,12 +4,12 @@ require_once '../library/config.php';
  $grn_id=$_REQUEST['grn_id'];
 
 	$query_order="SELECT * FROM tbl_grn WHERE grn_id='$grn_id'";
-	$result_order=mysql_query($query_order) or die("Unable to select data from the tbl_grn. ".mysql_error());
-	$row_order=mysql_fetch_assoc($result_order);
+	$result_order=mysqli_query($connection,$query_order) or die("Unable to select data from the tbl_grn. ".mysqli_error());
+	$row_order=mysqli_fetch_assoc($result_order);
 
 
 $query_drug="SELECT * FROM tbl_stock WHERE grn_id='$grn_id'";
-$result_drug=mysql_query($query_drug) or die("Unable to select data from the tbl_drugs. ".mysql_error());
+$result_drug=mysqli_query($connection,$query_drug) or die("Unable to select data from the tbl_drugs. ".mysqli_error());
 $tpayment=0;
 $tout=0;
 $tamt=0;

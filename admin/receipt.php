@@ -517,8 +517,8 @@ function form_submission(button_id,form_id){
 				  <select name="oblation">
 				  	<option> -- තෝරන්න -- </option>
 					<?php
-				  $oblation_result = mysql_query("SELECT `idOblation`, `name` FROM `oblation`") or die(mysql_error());
-				  while($oblation_data = mysql_fetch_assoc($oblation_result)){
+				  $oblation_result = mysqli_query($connection,"SELECT `idOblation`, `name` FROM `oblation`") or die(mysqli_error());
+				  while($oblation_data = mysqli_fetch_assoc($oblation_result)){
 				  ?>
 					<option value="<?php echo $oblation_data['name']; ?>"> <?php echo $oblation_data['name']; ?> </option>
 					<?php
@@ -536,8 +536,8 @@ function form_submission(button_id,form_id){
 				  <select name="fane">
 				  	<option> -- තෝරන්න -- </option>
 					<?php
-				  $fane_result = mysql_query("SELECT `name` FROM `fane`") or die(mysql_error());
-				  while($fane_data = mysql_fetch_assoc($fane_result)){
+				  $fane_result = mysqli_query($connection,"SELECT `name` FROM `fane`") or die(mysqli_error());
+				  while($fane_data = mysqli_fetch_assoc($fane_result)){
 				  ?>
 					<option value="<?php echo $fane_data['name']; ?>"> <?php echo $fane_data['name']; ?> </option>
 					<?php

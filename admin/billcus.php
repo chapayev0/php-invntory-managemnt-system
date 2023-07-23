@@ -13,18 +13,18 @@ $bill_id=$_POST['bill_id'];
 
 $bill_id=$_POST['bill_id'];
 $query_bill="SELECT * FROM tbl_bill WHERE bill_id='$bill_id' AND bill_status='0'";
-$result_bill=mysql_query($query_bill) or die("Unable to select data from the tbl_bill. ".mysql_error());
-$row_bill=mysql_fetch_assoc($result_bill);
+$result_bill=mysqli_query($connection,$query_bill) or die("Unable to select data from the tbl_bill. ".mysqli_error());
+$row_bill=mysqli_fetch_assoc($result_bill);
 
 $query_bill1="SELECT * FROM tbl_message ";
-$result_bill1=mysql_query($query_bill1) or die("Unable to select data from the tbl_message. ".mysql_error());
-$row_bill1=mysql_fetch_assoc($result_bill1);
+$result_bill1=mysqli_query($connection,$query_bill1) or die("Unable to select data from the tbl_message. ".mysqli_error());
+$row_bill1=mysqli_fetch_assoc($result_bill1);
 
 
 
 $sold_item=0;
 $query_item_count="SELECT * FROM tbl_bill_menu WHERE bill_id='$bill_id' ";
-$result_item_count=mysql_query($query_item_count) or die("Unable to select data from the tbl_bill_menu. ".mysql_error());
+$result_item_count=mysqli_query($connection,$query_item_count) or die("Unable to select data from the tbl_bill_menu. ".mysqli_error());
 
 
 //echo $cash=$row_bill[$_GET['cash']];
@@ -33,8 +33,8 @@ $result_item_count=mysql_query($query_item_count) or die("Unable to select data 
 
 function getvname($veh_id){
 	$query_user="SELECT veh_name FROM tbl_veh WHERE veh_id=$veh_id";
-	$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_userjj. ".mysql_error());
-	$row_user=mysql_fetch_row($result_user);
+	$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_userjj. ".mysqli_error());
+	$row_user=mysqli_fetch_row($result_user);
 	return $row_user[0];
 	}	
 
@@ -43,8 +43,8 @@ function getclname($veh_id){
 FROM tbl_client
 INNER JOIN tbl_veh ON tbl_veh.cl_id = tbl_client.cl_id
 where tbl_veh.veh_id ='$veh_id'";
-	$result_user=mysql_query($query_user) or die("Unable to select data from the tbl_user. ".mysql_error());
-	$row_user=mysql_fetch_row($result_user);
+	$result_user=mysqli_query($connection,$query_user) or die("Unable to select data from the tbl_user. ".mysqli_error());
+	$row_user=mysqli_fetch_row($result_user);
 	return $row_user[0];
 	}
 
@@ -217,26 +217,26 @@ body {
 $gross_amount=0;
 $p_discount=0;
 $query_item="SELECT * FROM tbl_bill_menu WHERE bill_id='$bill_id'";
-$result_item=mysql_query($query_item) or die("Unable to select data from the tbl_bill_menu. ".mysql_error());
+$result_item=mysqli_query($connection,$query_item) or die("Unable to select data from the tbl_bill_menu. ".mysqli_error());
 
 
 
 $sold_item=0;
 $query_item_count="SELECT COUNT(bill_menu_id) as count FROM tbl_bill_menu WHERE bill_id='$bill_id'";
-$result_item_count=mysql_query($query_item_count) or die("Unable to select data from the tbl_bill_menu. ".mysql_error());
-while($row_item_count=mysql_fetch_assoc($result_item_count)){
+$result_item_count=mysqli_query($connection,$query_item_count) or die("Unable to select data from the tbl_bill_menu. ".mysqli_error());
+while($row_item_count=mysqli_fetch_assoc($result_item_count)){
 	$sold_item=$row_item_count['count'];
 }
 
 
 
 $vat_query="SELECT vat_rate FROM tbl_bill_menu WHERE bill_id='$bill_id'";
-$result_vat=mysql_query($vat_query) or die("Unable to select data from table bill menu".mysql_error());
-$row_vat=mysql_fetch_assoc($result_vat);
+$result_vat=mysqli_query($connection,$vat_query) or die("Unable to select data from table bill menu".mysqli_error());
+$row_vat=mysqli_fetch_assoc($result_vat);
 
 
 $i=0;
-while($row_item=mysql_fetch_assoc($result_item)){
+while($row_item=mysqli_fetch_assoc($result_item)){
 	$item_id=$row_item["menu_id"];
 	$dis_price="";
 	//$sold_item +=$row_item["bill_menu_qty"];

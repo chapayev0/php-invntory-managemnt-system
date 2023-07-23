@@ -7,8 +7,8 @@ $user_type=$_SESSION['user_type'];
 if($user_type == "admin"){
 	$stu_tp_id=$_GET['stu_tp_id'];
 	$query_stu_tp="SELECT * FROM tbl_student_type WHERE stu_tp_id='$stu_tp_id'";
-	$result_stu_tp=mysql_query($query_stu_tp) or die("Unable to select data from the tbl_student_type. ".mysql_error());
-	$row_stu_tp=mysql_fetch_assoc($result_stu_tp);
+	$result_stu_tp=mysqli_query($connection,$query_stu_tp) or die("Unable to select data from the tbl_student_type. ".mysqli_error());
+	$row_stu_tp=mysqli_fetch_assoc($result_stu_tp);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/admin_template.dwt.php" codeOutsideHTMLIsLocked="false" -->

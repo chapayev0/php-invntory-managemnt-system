@@ -7,8 +7,8 @@ $user_type=$_SESSION['user_type'];
 
 	$stu_id=$_GET['stu_id'];
 	$query_stu="SELECT * FROM tbl_student WHERE stu_id='$stu_id' AND stu_status='0'";
-	$result_stu=mysql_query($query_stu) or die("Unable to select data from the tbl_student. ".mysql_error());
-	$row_stu=mysql_fetch_assoc($result_stu);
+	$result_stu=mysqli_query($connection,$query_stu) or die("Unable to select data from the tbl_student. ".mysqli_error());
+	$row_stu=mysqli_fetch_assoc($result_stu);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/admin_template.dwt.php" codeOutsideHTMLIsLocked="false" -->

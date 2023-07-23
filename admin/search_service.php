@@ -47,8 +47,8 @@ $sql_count="SELECT
 FROM tbl_service LEFT JOIN tbl_maincategory ON tbl_service.scat_id=tbl_maincategory.scat_id WHERE tbl_service.ser_status ='0' $data ORDER BY tbl_service.ser_id";
 
 $rows_count=0;
-$get_number_of_rows=mysql_query($sql_count) or die("Unable to select data from the tbl_customer in count. " . mysql_error());
-while($row_number=mysql_fetch_row($get_number_of_rows)){
+$get_number_of_rows=mysqli_query($connection,$sql_count) or die("Unable to select data from the tbl_customer in count. " . mysqli_error());
+while($row_number=mysqli_fetch_row($get_number_of_rows)){
 	$rows_count++;
 }
 $numrows=$rows_count;
@@ -96,7 +96,7 @@ $query_p="SELECT
 		tbl_maincategory.scat_id
 		
 FROM tbl_service LEFT JOIN tbl_maincategory ON tbl_service.scat_id=tbl_maincategory.scat_id WHERE tbl_service.ser_status ='0' $data ORDER BY tbl_service.ser_id LIMIT $offset, $rowsPerPage";
-$result_p=mysql_query($query_p) or die("Unable to select data from the tbl_user. ".mysql_error());
+$result_p=mysqli_query($connection,$query_p) or die("Unable to select data from the tbl_user. ".mysqli_error());
 if(mysql_num_rows($result_p) != 0){
 ?>
 <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -110,7 +110,7 @@ if(mysql_num_rows($result_p) != 0){
 	<td width="50" align="center" class="tbl_header_right">Edit</td>
 	<td width="50" align="center" class="tbl_header">Delete</td>
 	</tr>
-	<?php while($row_p=mysql_fetch_row($result_p)){?>
+	<?php while($row_p=mysqli_fetch_row($result_p)){?>
   <tr class="body_text" onmouseover="this.style.backgroundColor='#EDFBD9';" onmouseout="this.style.backgroundColor='';">
     <td align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_p[0]; ?></td>
 	<td width="1" align="left" class="border_bottom_left" style="padding-left:3pt;"><?php echo $row_p[4]; ?></td>

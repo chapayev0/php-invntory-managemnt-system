@@ -8,8 +8,8 @@ if(isset($_SESSION['user_type'])){
 	
 	$id_muluthan_pujawa=$_GET['id_muluthan_pujawa'];
 	$query_book="SELECT * FROM muluthan_pujawa WHERE id_muluthan_pujawa=$id_muluthan_pujawa ";
-	$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_book=mysql_fetch_assoc($result_book);
+	$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_book=mysqli_fetch_assoc($result_book);
 	
 	
 		

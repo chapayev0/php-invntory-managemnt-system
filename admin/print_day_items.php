@@ -14,7 +14,7 @@ FROM tbl_bill_menu
 LEFT JOIN tbl_product ON tbl_bill_menu.menu_name = tbl_product.p_code
 WHERE tbl_bill_menu.menu_status = '0'  $data
 ORDER BY tbl_bill_menu.bill_menu_id";
-$result_drug=mysql_query($query_drug) or die("Unable to select data from the tbl_bill_menu. ".mysql_error());
+$result_drug=mysqli_query($connection,$query_drug) or die("Unable to select data from the tbl_bill_menu. ".mysqli_error());
 if(mysql_num_rows($result_drug) != 0){
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,7 +48,7 @@ if(mysql_num_rows($result_drug) != 0){
     <td width="117" align="center" class="tbl_header_right"> Date</td>
     
   </tr>
-  <?php while($row_recp=mysql_fetch_assoc($result_drug)){
+  <?php while($row_recp=mysqli_fetch_assoc($result_drug)){
 	  
 	   $pro += ($row_recp["menu_price"]-$row_recp["cprice"])*$row_recp["bill_menu_qty"];
   

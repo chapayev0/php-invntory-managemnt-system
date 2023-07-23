@@ -7,8 +7,8 @@ if (!$q) return;
 
 
 $sql = "SELECT product_idn,service_name,service_price,diff FROM  tbl_product WHERE product_idn LIKE '$q%' ORDER BY product_idn";  
-$rsd = mysql_query($sql); 
-while($rs = mysql_fetch_row($rsd)) {
+$rsd = mysqli_query($connection,$sql); 
+while($rs = mysqli_fetch_row($rsd)) {
 	
 	$product_idn=$rs[0];
 	$service_name=$rs[1];

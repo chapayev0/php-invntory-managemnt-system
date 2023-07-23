@@ -7,8 +7,8 @@ $user_type=$_SESSION['user_type'];
 	
 	$donation_id=$_GET['donation_id'];
 	$query_book="SELECT * FROM tbl_donation WHERE donation_id='$donation_id' AND d_status='0'";
-	$result_book=mysql_query($query_book) or die("Unable to select data from the tbl_donation. ".mysql_error());
-	$row_book=mysql_fetch_assoc($result_book);
+	$result_book=mysqli_query($connection,$query_book) or die("Unable to select data from the tbl_donation. ".mysqli_error());
+	$row_book=mysqli_fetch_assoc($result_book);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/admin_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
