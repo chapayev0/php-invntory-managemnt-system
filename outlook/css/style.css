@@ -1,0 +1,168 @@
+body {
+	padding: 0px;
+	background-color: #CCC;
+	background-repeat: repeat;
+	background-position: center top;
+	margin: 0px;
+	color:#059dd7;
+	font-family:"Times New Roman", Times, serif;
+	background-size: cover;
+	background-image: url(../images/aa.bmp);
+}
+@font-face {
+    font-family: "PageFont";
+    src: url(CALIFI.TTF) format("truetype");
+}
+#mainTable {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	top: -36px;
+}
+#mainContainer {
+	padding: 0px;
+	width: 978px;
+	height:100%;
+	border: 1px solid #C00;
+	-webkit-box-shadow: 0px 0px 10px 0px #c5c0c0;
+	box-shadow: 0px 0px 10px 0px #c5c0c0;
+	z-index: 2;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	background-image: url(../images/bgrep.png);
+	background-repeat: repeat;
+	
+}
+#menuUL {
+	margin: 0px;
+	padding: 0px;
+	float: right;
+	height: 44px;
+	width: auto;
+	list-style-type: none;
+}
+#menuUL li {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	line-height: 44px;
+	font-weight: normal;
+	font-variant: normal;
+	color: #FFF;
+	margin: 0px;
+	float: left;
+	height: 44px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+#mainTable tr td {
+	vertical-align: top;
+}
+#TopText {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-variant: normal;
+	color: #FFF;
+	margin: 0px;
+	font-weight: 600;
+	padding-top: 20px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	text-align: right;
+	line-height: 20px;
+	clear: both;
+}
+
+#footerLink {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	font-style: normal;
+	line-height: 20px;
+	font-weight: normal;
+	font-variant: normal;
+	color: #C30;
+	text-align: center;
+	padding: 0px;
+	margin-top: 15px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	word-spacing: 20px;
+}
+
+.PageTitle {
+	font-family: "PageFont", Verdana, Geneva, sans-serif;
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 700;
+	font-variant: normal;
+	color: #093;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	font-style:italic;
+	border-bottom:solid 1px #093;
+}
+.PagePara {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	font-style: normal;
+	line-height: 20px;
+	font-weight: normal;
+	font-variant: normal;
+	color: #8c8c8b;
+	margin: 0px;
+	padding: 0px;
+}
+#mainContainer #we {
+	background-color: #FFF;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+.TxtField {
+	color: #093;
+	border: 1px solid #093;
+	padding: 2px;
+	width: 100%;
+}
+.SubTitle {
+	padding: 0px;
+	font-family: "PageFont", Verdana, Geneva, sans-serif;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+.Table {
+	background-color: #F4FFF8;
+}
+.Table .TableTile {
+	color: #FFF;
+	background-color: #093;
+}
+#guestRegistrationButton {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFF;
+	background-color: #093;
+	margin: 0px;
+	padding: 10px;
+	width: 114px;
+}
